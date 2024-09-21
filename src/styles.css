@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'open-sans-bold';
+    src: url('./fonts/OpenSans-Bold.ttf');
+}
+
 :root {
     --clr-1: #1992d2;
     --clr-2: #facc15;
@@ -22,4 +27,12 @@ body {
 
 .sidebar {
     background-color: var(--clr-1);
+    text-align: center;
 }
+
+.header {
+    font-family: 'open-sans-bold';
+    font-size: 2rem;
+    color: var(--clr-4);
+}
+
