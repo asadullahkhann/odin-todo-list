@@ -27,7 +27,6 @@ body {
 
 .sidebar {
     background-color: var(--clr-1);
-    text-align: center;
 }
 
 .header {
@@ -35,4 +34,6 @@ body {
     font-size: 2rem;
     color: var(--clr-4);
 }
+
+
 
