@@ -27,6 +27,7 @@ body {
 
 .sidebar {
     background-color: var(--clr-1);
+    padding: 8px;
 }
 
 .header {
