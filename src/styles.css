@@ -46,6 +46,12 @@ body {
     color: var(--clr-4);
 }
 
+.add-project {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 input {
     padding: 6px 12px;
     border-radius: 5px;
