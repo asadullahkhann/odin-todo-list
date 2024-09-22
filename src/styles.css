@@ -8,6 +8,11 @@
     src: url('./fonts/Roboto-Italic.ttf');
 }
 
+@font-face {
+    font-family: 'roboto';
+    src: url('./fonts/Roboto-Regular.ttf');
+}
+
 :root {
     --clr-1: #1992d2;
     --clr-2: #facc15;
@@ -46,6 +51,7 @@ input {
     border-radius: 5px;
     border: none;
     font-size: 1rem;
+    font-family: 'roboto';
 }
 
 button {
