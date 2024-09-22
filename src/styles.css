@@ -3,6 +3,11 @@
     src: url('./fonts/OpenSans-Bold.ttf');
 }
 
+@font-face {
+    font-family: 'roboto-italic';
+    src: url('./fonts/Roboto-Italic.ttf');
+}
+
 :root {
     --clr-1: #1992d2;
     --clr-2: #facc15;
@@ -37,11 +42,23 @@ body {
 }
 
 input {
-    width: 150px;
-    height: 25px;
+    padding: 6px 12px;
     border-radius: 5px;
     border: none;
+    font-size: 1rem;
 }
 
+button {
+    border-radius: 5px;
+}
+
+.add-project>button {
+    padding: 6px 12px;
+    border: none;
+    font-size: 1rem;
+    font-family: 'roboto-italic';
+    background-color: var(--clr-4);
+    color: var(--clr-1);
+}
 
 
