@@ -44,6 +44,7 @@ body {
     font-family: 'open-sans-bold';
     font-size: 2rem;
     color: var(--clr-4);
+    padding-bottom: 16px;
 }
 
 .add-project {
