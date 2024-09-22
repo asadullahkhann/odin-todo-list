@@ -13,6 +13,11 @@
     src: url('./fonts/Roboto-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'knight-warrior';
+    src: url('./fonts/KnightWarrior-w16n8.otf');
+}
+
 :root {
     --clr-1: #1992d2;
     --clr-2: #facc15;
@@ -41,7 +46,7 @@ body {
 }
 
 .header {
-    font-family: 'open-sans-bold';
+    font-family: 'knight-warrior';
     font-size: 2rem;
     color: var(--clr-4);
     padding-bottom: 16px;
