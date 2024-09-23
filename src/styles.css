@@ -18,6 +18,11 @@
     src: url('./fonts/KnightWarrior-w16n8.otf');
 }
 
+@font-face {
+    font-family: 'backstreet';
+    src: url('./fonts/Backstreet.ttf');
+}
+
 :root {
     --clr-1: #1992d2;
     --clr-2: #facc15;
@@ -88,4 +93,12 @@ button:active {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.projects>button {
+    border: none;
+    background-color: var(--clr-1);
+    color: var(--clr-4);
+    font-size: 1.5rem;
+    font-family: 'backstreet';
 }
