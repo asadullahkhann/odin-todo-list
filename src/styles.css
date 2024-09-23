@@ -83,4 +83,9 @@ button:active {
     opacity: .5;
 }
 
-
+.projects {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
