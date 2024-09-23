@@ -103,3 +103,7 @@ button:active {
     font-size: 1.5rem;
     font-family: 'backstreet';
 }
+
+.projects>button:hover {
+    border-bottom: 2px solid var(--clr-4);
+}
