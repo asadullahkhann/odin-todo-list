@@ -71,6 +71,11 @@ input {
     font-family: 'roboto';
 }
 
+input:focus {
+    outline: none;
+    box-shadow: 2px 2px 8px;
+}
+
 button {
     border-radius: 5px;
 }
