@@ -112,3 +112,9 @@ button:active {
 .projects>button:hover {
     border-bottom: 2px solid var(--clr-4);
 }
+
+.todos-container {
+    background-color: var(--clr-3);
+    display: flex;
+    flex-wrap: wrap;
+}
