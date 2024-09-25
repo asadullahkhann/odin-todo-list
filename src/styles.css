@@ -23,6 +23,11 @@
     src: url('./fonts/Backstreet.ttf');
 }
 
+@font-face {
+    font-family: 'noto-sans-math';
+    src: url('./fonts/NotoSansMath-Regular.ttf');
+}
+
 :root {
     --clr-1: #1992d2;
     --clr-2: #facc15;
@@ -118,3 +123,21 @@ button:active {
     display: flex;
     flex-wrap: wrap;
 }
+
+.add-todo-btn {
+    position: fixed;
+    bottom: 4%;
+    right: 4%;
+}
+
+.add-todo-btn>button {
+    width: 75px;
+    height: 75px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--clr-1);
+    color: var(--clr-4);
+    font-size: 2.5rem;
+    font-family: 'noto-sans-math';
+}
+
