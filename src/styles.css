@@ -176,3 +176,9 @@ button:active {
     color: var(--clr-6);
     font-family: 'roboto-italic';
 }
+
+.edit-btn>button {
+    padding: 4px 8px;
+    background-color: var(--clr-3);
+    font-family: cursive;
+}
