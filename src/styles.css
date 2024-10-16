@@ -28,6 +28,11 @@
     src: url('./fonts/NotoSansMath-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'ktf-roadbrush';
+    src: url('./fonts/KTF-Roadbrush.ttf');
+}
+
 :root {
     --clr-1: #1992d2;
     --clr-2: #facc15;
@@ -161,4 +166,8 @@ button:active {
 .todo>.edit-btn{
     display: flex;
     justify-content: flex-end;
+}
+
+.heading>h3 {
+    font-family: 'ktf-roadbrush';
 }
