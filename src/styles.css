@@ -122,6 +122,7 @@ button:active {
     background-color: var(--clr-3);
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
 
 .add-todo-btn {
@@ -147,6 +148,8 @@ button:active {
     flex-direction: column;
     gap: 10px;
     background-color: var(--clr-4);
+    border-radius: 8px;
+    border-left: 8px solid var(--clr-2);
 }
 
 .todo>div {
