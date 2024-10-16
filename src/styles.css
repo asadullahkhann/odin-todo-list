@@ -171,3 +171,8 @@ button:active {
 .heading>h3 {
     font-family: 'ktf-roadbrush';
 }
+
+.content>p {
+    color: var(--clr-6);
+    font-family: 'roboto-italic';
+}
