@@ -121,7 +121,7 @@ button:active {
 .todos-container {
     background-color: var(--clr-3);
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .add-todo-btn {
@@ -141,3 +141,21 @@ button:active {
     font-family: 'noto-sans-math';
 }
 
+.todo {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--clr-4);
+}
+
+.todo>div {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr;
+    gap: 15px;
+}
+
+.todo>.edit-btn{
+    display: flex;
+    justify-content: flex-end;
+}
