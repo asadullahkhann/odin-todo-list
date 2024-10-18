@@ -43,7 +43,7 @@
     height: 100%;
 }
 
-* {
+*:not(dialog) {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
