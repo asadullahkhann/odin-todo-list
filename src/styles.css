@@ -113,6 +113,16 @@ select {
     padding: 6px 12px;
 }
 
+.submit-btn {
+    width: 100%;
+    padding: 6px 12px;
+    border: none;
+    font-size: 1rem;
+    font-family: 'open-sans-bold';
+    font-style: italic;
+    background-color: var(--clr-6);
+}
+
 button {
     border-radius: 5px;
 }
@@ -128,6 +138,10 @@ button {
 
 button:active {
     opacity: .5;
+}
+
+button:hover {
+    box-shadow: 2px 2px 8px;
 }
 
 .projects {
