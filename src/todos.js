@@ -8,6 +8,7 @@ class Todo {
 };
 
 const projects = {
+    'Today': [],                                                                                                                                    
     currentProject: 'Today',
 };
 
