@@ -16,7 +16,7 @@ const displayController = (function() {
             todosContainer.removeChild(todosContainer.firstChild);
         }
     }
-    const reRenderScreen = () => {
+    const renderTodos = () => {
         clearTodosContainer();
         for(const todo of projects[projects.currentProject]) {
             const todoDiv = document.createElement('div');
@@ -44,7 +44,7 @@ const displayController = (function() {
                 todosContainer.appendChild(todoDiv);
         };
     }
-    return {reRenderScreen};
+    return {renderTodos};
 })();
 
 addTodoBtn.addEventListener('click', () => {
@@ -59,6 +59,6 @@ dialog.addEventListener('close', () => {
     }
     const [task, desc, dueDate] = dialogInputsValues;
     projects[projects.currentProject].push(new Todo(task, desc, priority, dueDate));
-    displayController.reRenderScreen();
+    displayController.renderTodos();
 
 });
