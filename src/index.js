@@ -4,11 +4,48 @@ import { Todo, projects } from './todos';
 const addProjectBtn = document.querySelector('add-project>button');
 const addProjectInput = document.querySelector('add-project>input');
 const projectBtns = document.querySelectorAll('projects>button');
-const todoContainer = document.querySelector('.todo-container');
+const todosContainer = document.querySelector('.todos-container');
 const dialog = document.querySelector('dialog');
 const dialogInputs = document.querySelectorAll('dialog input');
 const selectEl = document.querySelector('select');
 const addTodoBtn = document.querySelector('.add-todo-btn');
+
+const displayController = (function() {
+    const clearTodosContainer = () => {
+        while(todosContainer.firstChild) {
+            todosContainer.removeChild(todosContainer.firstChild);
+        }
+    }
+    const reRenderScreen = () => {
+        clearTodosContainer();
+        for(const todo of projects[projects.currentProject]) {
+            const todoDiv = document.createElement('div');
+            const todoHeadingDiv = document.createElement('div');
+            const todoContentDiv = document.createElement('div');
+            const todoEditBtnDiv = document.createElement('div');
+            const todoEditBtn = document.createElement('button');
+            todoDiv.classList.add('todo');
+            todoHeadingDiv.classList.add('heading');
+            todoContentDiv.classList.add('content');
+            todoEditBtnDiv.classList.add('edit-btn');
+            for(const prop in todo) {
+                const h3 = document.createElement('h3');
+                const para = document.createElement('p');
+                h3.textContent = prop[0].toUpperCase() + prop.slice(1);
+                para.textContent = todo[prop];
+                todoHeadingDiv.appendChild(h3);
+                todoContentDiv.appendChild(para);
+            }
+                todoEditBtn.textContent = 'Edit';
+                todoEditBtnDiv.appendChild(todoEditBtn);
+                todoDiv.appendChild(todoHeadingDiv);
+                todoDiv.appendChild(todoContentDiv);
+                todoDiv.appendChild(todoEditBtnDiv);
+                todosContainer.appendChild(todoDiv);
+        };
+    }
+    return {reRenderScreen};
+})();
 
 addTodoBtn.addEventListener('click', () => {
     dialog.showModal();
@@ -22,6 +59,6 @@ dialog.addEventListener('close', () => {
     }
     const [task, desc, dueDate] = dialogInputsValues;
     projects[projects.currentProject].push(new Todo(task, desc, priority, dueDate));
-    console.log(projects[projects.currentProject]);
+    displayController.reRenderScreen();
 
 });
