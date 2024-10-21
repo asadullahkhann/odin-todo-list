@@ -18,6 +18,7 @@ const domManipulator = (function() {
     }
     const renderTodos = () => {
         clearTodosContainer();
+        let dataIndex = 0;
         for(const todo of projects[projects.currentProject]) {
             const todoDiv = document.createElement('div');
             const todoHeadingDiv = document.createElement('div');
@@ -25,6 +26,8 @@ const domManipulator = (function() {
             const todoEditBtnDiv = document.createElement('div');
             const todoEditBtn = document.createElement('button');
             todoDiv.classList.add('todo');
+            todoDiv.setAttribute('data-index', dataIndex);
+            dataIndex++;
             todoHeadingDiv.classList.add('heading');
             todoContentDiv.classList.add('content');
             todoEditBtnDiv.classList.add('edit-btn');
@@ -43,6 +46,7 @@ const domManipulator = (function() {
                 todoDiv.appendChild(todoEditBtnDiv);
                 todosContainer.appendChild(todoDiv);
         };
+
     }
     return {renderTodos};
 })();
