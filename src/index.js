@@ -10,7 +10,7 @@ const dialogInputs = document.querySelectorAll('dialog input');
 const selectEl = document.querySelector('select');
 const addTodoBtn = document.querySelector('.add-todo-btn');
 
-const displayController = (function() {
+const domManipulator = (function() {
     const clearTodosContainer = () => {
         while(todosContainer.firstChild) {
             todosContainer.removeChild(todosContainer.firstChild);
@@ -59,6 +59,6 @@ dialog.addEventListener('close', () => {
     }
     const [task, desc, dueDate] = dialogInputsValues;
     projects[projects.currentProject].push(new Todo(task, desc, priority, dueDate));
-    displayController.renderTodos();
+    domManipulator.renderTodos();
 
 });
