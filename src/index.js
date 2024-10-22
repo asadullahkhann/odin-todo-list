@@ -53,6 +53,10 @@ const domManipulator = (function() {
 
 
 const eventHandlers = (function() {
+    const handleAddTodoBtnClick = () => {
+        dialog.showModal();
+        dialog.addEventListener('close', eventHandlers.handleCloseForAdding);
+    }
     const handleCloseForAdding = () => {
         const dialogInputsValues = [];
         const priority = selectEl.value;
@@ -64,10 +68,7 @@ const eventHandlers = (function() {
         domManipulator.renderTodos();
         dialog.removeEventListener('close', eventHandlers.handleCloseForAdding);
     };
-    return {handleCloseForAdding};
+    return {handleCloseForAdding, handleAddTodoBtnClick};
 })();
 
-addTodoBtn.addEventListener('click', () => {
-    dialog.showModal();
-    dialog.addEventListener('close', eventHandlers.handleCloseForAdding);
-});
+addTodoBtn.addEventListener('click', eventHandlers.handleAddTodoBtnClick);
