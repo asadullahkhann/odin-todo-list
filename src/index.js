@@ -1,9 +1,10 @@
 import './styles.css';
 import { Todo, projects } from './todos';
 
-const addProjectBtn = document.querySelector('add-project>button');
-const addProjectInput = document.querySelector('add-project>input');
-const projectBtns = document.querySelectorAll('projects>button');
+const addProjectBtn = document.querySelector('.add-project>button');
+const addProjectInput = document.querySelector('.add-project>input');
+const projectBtns = document.querySelectorAll('.projects>button');
+const projectBtnsContainer = document.querySelector('.projects');
 const todosContainer = document.querySelector('.todos-container');
 const dialog = document.querySelector('dialog');
 const dialogInputs = document.querySelectorAll('dialog input');
@@ -49,8 +50,20 @@ const eventHandlers = (function() {
         };
         domManipulator.renderTodos();
         dialog.removeEventListener('close', eventHandlers.handleCloseForEditing);
-    }
-    return {handleCloseForAdding, handleAddTodoBtnClick, handleEditBtnClick, handleCloseForEditing};
+    };
+    const handleAddProjectBtnClick = () => {
+        const newProjectBtn = document.createElement('button');
+        newProjectBtn.textContent = '# ' + addProjectInput.value;
+        addProjectInput.value = '';
+        projectBtnsContainer.appendChild(newProjectBtn);
+    } 
+    return {
+        handleCloseForAdding, 
+        handleAddTodoBtnClick, 
+        handleEditBtnClick, 
+        handleCloseForEditing, 
+        handleAddProjectBtnClick,
+    };
 })();
 
 const domManipulator = (function() {
@@ -110,3 +123,5 @@ const domManipulator = (function() {
 })();
 
 addTodoBtn.addEventListener('click', eventHandlers.handleAddTodoBtnClick);
+
+addProjectBtn.addEventListener('click', eventHandlers.handleAddProjectBtnClick);
