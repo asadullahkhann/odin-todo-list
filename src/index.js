@@ -52,17 +52,24 @@ const eventHandlers = (function() {
         dialog.removeEventListener('close', eventHandlers.handleCloseForEditing);
     };
     const handleAddProjectBtnClick = () => {
+        projects[addProjectInput.value] = [];
         const newProjectBtn = document.createElement('button');
         newProjectBtn.textContent = '# ' + addProjectInput.value;
+        newProjectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
         addProjectInput.value = '';
         projectBtnsContainer.appendChild(newProjectBtn);
-    } 
+    };
+    const handleProjectBtnClick = e => {
+        projects.currentProject = e.target.textContent.slice(2);
+        domManipulator.renderTodos();
+    }
     return {
         handleCloseForAdding, 
         handleAddTodoBtnClick, 
         handleEditBtnClick, 
         handleCloseForEditing, 
         handleAddProjectBtnClick,
+        handleProjectBtnClick,
     };
 })();
 
@@ -125,3 +132,7 @@ const domManipulator = (function() {
 addTodoBtn.addEventListener('click', eventHandlers.handleAddTodoBtnClick);
 
 addProjectBtn.addEventListener('click', eventHandlers.handleAddProjectBtnClick);
+
+projectBtns.forEach(projectBtn => {
+    projectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
+})
