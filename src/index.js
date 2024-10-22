@@ -10,6 +10,49 @@ const dialogInputs = document.querySelectorAll('dialog input');
 const selectEl = document.querySelector('select');
 const addTodoBtn = document.querySelector('.add-todo-btn');
 
+const dynamicInfo = {
+    editTodoIndex: null,
+}
+
+const eventHandlers = (function() {
+    const handleAddTodoBtnClick = () => {
+        dialog.showModal();
+        dialog.addEventListener('close', eventHandlers.handleCloseForAdding);
+    };
+    const handleEditBtnClick = e => {
+        dynamicInfo.editTodoIndex = +e.target.parentNode.parentNode.getAttribute('data-index');
+        domManipulator.showEditDialog();
+        dialog.addEventListener('close', eventHandlers.handleCloseForEditing);
+
+    }
+    const handleCloseForAdding = () => {
+        const dialogInputsValues = [];
+        const priority = selectEl.value;
+        for(const dialogInput of dialogInputs) {
+            dialogInputsValues.push(dialogInput.value);
+        }
+        const [task, desc, dueDate] = dialogInputsValues;
+        projects[projects.currentProject].push(new Todo(task, desc, priority, dueDate));
+        domManipulator.renderTodos();
+        dialog.removeEventListener('close', eventHandlers.handleCloseForAdding);
+    };
+    const handleCloseForEditing = () => {
+        const editTodo = projects[projects.currentProject][dynamicInfo.editTodoIndex];
+        let i = 0;
+        for(const prop in editTodo) {
+            if(prop === 'priority') {
+                editTodo[prop] = selectEl.value;
+                continue;
+            };
+            editTodo[prop] = dialogInputs[i].value;
+            i++;
+        };
+        domManipulator.renderTodos();
+        dialog.removeEventListener('close', eventHandlers.handleCloseForEditing);
+    }
+    return {handleCloseForAdding, handleAddTodoBtnClick, handleEditBtnClick, handleCloseForEditing};
+})();
+
 const domManipulator = (function() {
     const clearTodosContainer = () => {
         while(todosContainer.firstChild) {
@@ -40,35 +83,30 @@ const domManipulator = (function() {
                 todoContentDiv.appendChild(para);
             }
                 todoEditBtn.textContent = 'Edit';
+                todoEditBtn.addEventListener('click', eventHandlers.handleEditBtnClick);
                 todoEditBtnDiv.appendChild(todoEditBtn);
                 todoDiv.appendChild(todoHeadingDiv);
                 todoDiv.appendChild(todoContentDiv);
                 todoDiv.appendChild(todoEditBtnDiv);
                 todosContainer.appendChild(todoDiv);
         };
-
-    }
-    return {renderTodos};
-})();
-
-
-const eventHandlers = (function() {
-    const handleAddTodoBtnClick = () => {
-        dialog.showModal();
-        dialog.addEventListener('close', eventHandlers.handleCloseForAdding);
-    }
-    const handleCloseForAdding = () => {
-        const dialogInputsValues = [];
-        const priority = selectEl.value;
-        for(const dialogInput of dialogInputs) {
-            dialogInputsValues.push(dialogInput.value);
-        }
-        const [task, desc, dueDate] = dialogInputsValues;
-        projects[projects.currentProject].push(new Todo(task, desc, priority, dueDate));
-        domManipulator.renderTodos();
-        dialog.removeEventListener('close', eventHandlers.handleCloseForAdding);
     };
-    return {handleCloseForAdding, handleAddTodoBtnClick};
+    const showEditDialog = () => {
+        const editTodo = projects[projects.currentProject][dynamicInfo.editTodoIndex];
+        let i = 0;
+        for(const prop in editTodo) {
+            if(prop === 'priority') {
+                dialog.querySelectorAll('option').forEach(option => {
+                    if(option.value === prop) option.selected === true;
+                });
+                continue;
+            };
+            dialogInputs[i].value = editTodo[prop];
+            i++;
+        };
+        dialog.showModal();
+    }
+    return {renderTodos, showEditDialog};
 })();
 
 addTodoBtn.addEventListener('click', eventHandlers.handleAddTodoBtnClick);
