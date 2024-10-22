@@ -52,7 +52,7 @@ const domManipulator = (function() {
 })();
 
 
-const closeEventHandler = (function() {
+const eventHandlers = (function() {
     const handleCloseForAdding = () => {
         const dialogInputsValues = [];
         const priority = selectEl.value;
@@ -62,12 +62,12 @@ const closeEventHandler = (function() {
         const [task, desc, dueDate] = dialogInputsValues;
         projects[projects.currentProject].push(new Todo(task, desc, priority, dueDate));
         domManipulator.renderTodos();
-        dialog.removeEventListener('close', closeEventHandler.handleCloseForAdding);
+        dialog.removeEventListener('close', eventHandlers.handleCloseForAdding);
     };
     return {handleCloseForAdding};
 })();
 
 addTodoBtn.addEventListener('click', () => {
     dialog.showModal();
-    dialog.addEventListener('close', closeEventHandler.handleCloseForAdding);
+    dialog.addEventListener('close', eventHandlers.handleCloseForAdding);
 });
