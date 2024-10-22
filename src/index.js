@@ -51,18 +51,23 @@ const domManipulator = (function() {
     return {renderTodos};
 })();
 
+
+const closeEventHandler = (function() {
+    const handleCloseForAdding = () => {
+        const dialogInputsValues = [];
+        const priority = selectEl.value;
+        for(const dialogInput of dialogInputs) {
+            dialogInputsValues.push(dialogInput.value);
+        }
+        const [task, desc, dueDate] = dialogInputsValues;
+        projects[projects.currentProject].push(new Todo(task, desc, priority, dueDate));
+        domManipulator.renderTodos();
+        dialog.removeEventListener('close', closeEventHandler.handleCloseForAdding);
+    };
+    return {handleCloseForAdding};
+})();
+
 addTodoBtn.addEventListener('click', () => {
     dialog.showModal();
-});
-
-dialog.addEventListener('close', () => {
-    const dialogInputsValues = [];
-    const priority = selectEl.value;
-    for(const dialogInput of dialogInputs) {
-        dialogInputsValues.push(dialogInput.value);
-    }
-    const [task, desc, dueDate] = dialogInputsValues;
-    projects[projects.currentProject].push(new Todo(task, desc, priority, dueDate));
-    domManipulator.renderTodos();
-
+    dialog.addEventListener('close', closeEventHandler.handleCloseForAdding);
 });
