@@ -140,7 +140,7 @@ button:active {
     opacity: .5;
 }
 
-button:hover {
+.submit-btn:hover, .todos-container button:hover {
     box-shadow: 2px 2px 8px;
 }
 
