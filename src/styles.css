@@ -188,6 +188,14 @@ button:active {
     opacity: 0.7;
 }
 
+.add-todo-btn>button:hover {
+    opacity: 1;
+}
+
+.add-todo-btn>button:active {
+    opacity: .5;
+}
+
 .todo {
     padding: 16px;
     display: flex;
