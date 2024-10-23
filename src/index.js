@@ -62,6 +62,11 @@ const eventHandlers = (function() {
     const handleProjectBtnClick = e => {
         projects.currentProject = e.target.textContent.slice(2);
         domManipulator.renderTodos();
+    };
+    const handleDeletelBtnClick = e => {
+        const deleteTodoIndex = +e.target.parentNode.parentNode.getAttribute('data-index');
+        projects[projects.currentProject].splice(deleteTodoIndex, 1);
+        domManipulator.renderTodos();
     }
     return {
         handleCloseForAdding, 
@@ -70,6 +75,7 @@ const eventHandlers = (function() {
         handleCloseForEditing, 
         handleAddProjectBtnClick,
         handleProjectBtnClick,
+        handleDeletelBtnClick,
     };
 })();
 
@@ -88,6 +94,7 @@ const domManipulator = (function() {
             const todoContentDiv = document.createElement('div');
             const todoEditBtnDiv = document.createElement('div');
             const todoEditBtn = document.createElement('button');
+            const todoDeleteBtn = document.createElement('button');
             todoDiv.classList.add('todo');
             todoDiv.setAttribute('data-index', dataIndex);
             dataIndex++;
@@ -104,7 +111,10 @@ const domManipulator = (function() {
             }
                 todoEditBtn.textContent = 'Edit';
                 todoEditBtn.addEventListener('click', eventHandlers.handleEditBtnClick);
+                todoDeleteBtn.textContent = 'Delete';
+                todoDeleteBtn.addEventListener('click', eventHandlers.handleDeletelBtnClick);
                 todoEditBtnDiv.appendChild(todoEditBtn);
+                todoEditBtnDiv.appendChild(todoDeleteBtn);
                 todoDiv.appendChild(todoHeadingDiv);
                 todoDiv.appendChild(todoContentDiv);
                 todoDiv.appendChild(todoEditBtnDiv);
