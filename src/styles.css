@@ -203,6 +203,7 @@ button:active {
     background-color: var(--clr-4);
     border-radius: 8px;
     border-left: 8px solid var(--clr-2);
+    box-shadow: 2px 2px 6px;
 }
 
 .todo>div {
