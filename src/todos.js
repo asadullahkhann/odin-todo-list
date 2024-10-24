@@ -7,4 +7,15 @@ class Todo {
     };
 };
 
-export { Todo };
+function getProjects() {
+    if(!localStorage.getItem('projects')) {
+        return {"Today": [], "currentProject": "Today", "dynamicInfo": {}};
+    };
+    return JSON.parse(localStorage.getItem('projects'));
+};
+
+function setProjects(obj) {
+    localStorage.setItem('projects', JSON.stringify(obj));
+};
+
+export { Todo, getProjects, setProjects };

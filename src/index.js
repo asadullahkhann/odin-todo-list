@@ -1,5 +1,5 @@
 import './styles.css';
-import { projects, Todo } from './todos';
+import { Todo, getProjects, setProjects } from './todos';
 
 const addProjectBtn = document.querySelector('.add-project>button');
 const addProjectInput = document.querySelector('.add-project>input');
@@ -10,10 +10,6 @@ const dialog = document.querySelector('dialog');
 const dialogInputs = document.querySelectorAll('dialog input');
 const selectEl = document.querySelector('select');
 const addTodoBtn = document.querySelector('.add-todo-btn');
-
-const dynamicInfo = {
-    editTodoIndex: null,
-}
 
 const eventHandlers = (function() {
     const handleAddTodoBtnClick = () => {
@@ -178,17 +174,6 @@ addProjectBtn.addEventListener('click', eventHandlers.handleAddProjectBtnClick);
 projectBtns.forEach(projectBtn => {
     projectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
 });
-
-function getProjects() {
-    if(!localStorage.getItem('projects')) {
-        return {"Today": [], "currentProject": "Today", "dynamicInfo": {}};
-    };
-    return JSON.parse(localStorage.getItem('projects'));
-};
-
-function setProjects(obj) {
-    localStorage.setItem('projects', JSON.stringify(obj));
-};
 
 window.addEventListener('load', () => {
     domManipulator.restoreProjectsBtns();
