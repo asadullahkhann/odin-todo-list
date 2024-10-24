@@ -153,7 +153,7 @@ const domManipulator = (function() {
     const restoreProjectsBtns = () => {
         const projects = getProjects();
         for(const prop in projects) {
-            if(prop === 'Today' || prop === 'currentProject') continue;
+            if(prop === 'Today' || prop === 'currentProject' || prop === 'dynamicInfo') continue;
             const projectBtn = document.createElement('button');
             projectBtn.textContent = '# ' + prop;
             projectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
