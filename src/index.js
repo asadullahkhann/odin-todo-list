@@ -153,7 +153,22 @@ const domManipulator = (function() {
         addProjectInput.value = '';
         projectBtnsContainer.appendChild(newProjectBtn);
     };
-    return {renderTodos, showEditDialog, createProjectBtn};
+    const restoreProjectsBtns = () => {
+        const projects = getProjects();
+        for(const prop in projects) {
+            if(prop === 'Today' || prop === 'currentProject') continue;
+            const projectBtn = document.createElement('button');
+            projectBtn.textContent = '# ' + prop;
+            projectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
+            projectBtnsContainer.appendChild(projectBtn);
+        }
+    }
+    return {
+        renderTodos, 
+        showEditDialog, 
+        createProjectBtn, 
+        restoreProjectsBtns
+    };
 })();
 
 addTodoBtn.addEventListener('click', eventHandlers.handleAddTodoBtnClick);
@@ -176,5 +191,6 @@ function setProjects(obj) {
 };
 
 window.addEventListener('load', () => {
+    domManipulator.restoreProjectsBtns();
     domManipulator.renderTodos();
-})
+});
