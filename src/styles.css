@@ -154,6 +154,7 @@ button:active {
     color: var(--clr-4);
     font-size: 1.5rem;
     font-family: 'falling-sky';
+    white-space: nowrap;
 }
 
 .projects>button:hover {
