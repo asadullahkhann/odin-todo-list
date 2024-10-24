@@ -64,6 +64,7 @@ const eventHandlers = (function() {
         const projects = getProjects();
         projects.currentProject = e.target.textContent.slice(2);
         setProjects(projects);
+        domManipulator.changeColorsOfSelectedProjectBtn();
         domManipulator.renderTodos();
     };
     const handleDeletelBtnClick = e => {
@@ -157,13 +158,27 @@ const domManipulator = (function() {
             projectBtn.textContent = '# ' + prop;
             projectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
             projectBtnsContainer.appendChild(projectBtn);
-        }
-    }
+        };
+        changeColorsOfSelectedProjectBtn();
+    };
+    const changeColorsOfSelectedProjectBtn = () => {
+        const projects = getProjects();
+        const projectBtns = document.querySelectorAll('.projects>button');
+        projectBtns.forEach(projectBtn => {
+            if(projectBtn.textContent.slice(2) === projects.currentProject) {
+                projectBtn.setAttribute('class', 'selected-project-btn');
+            }
+            else {
+                projectBtn.setAttribute('class', '');
+            };
+        })
+    };
     return {
         renderTodos, 
         showEditDialog, 
         createProjectBtn, 
-        restoreProjectsBtns
+        restoreProjectsBtns,
+        changeColorsOfSelectedProjectBtn,
     };
 })();
 

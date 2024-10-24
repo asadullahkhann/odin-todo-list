@@ -157,9 +157,7 @@ button:active {
 }
 
 .projects>button:hover {
-    border-bottom: 2px solid var(--clr-4);
-    background-color: var(--clr-4);
-    color: var(--clr-1);
+    box-shadow: 2px 2px 6px; 
 }
 
 .todos-container {
@@ -230,4 +228,9 @@ button:active {
     padding: 4px 8px;
     background-color: var(--clr-3);
     font-family: cursive;
+}
+
+.projects>.selected-project-btn {
+    background-color: var(--clr-4);
+    color: var(--clr-1);
 }
