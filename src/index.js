@@ -3,7 +3,7 @@ import { Todo, getProjects, setProjects } from './todos';
 
 const addProjectBtn = document.querySelector('.add-project>button');
 const addProjectInput = document.querySelector('.add-project>input');
-const projectBtns = document.querySelectorAll('.projects>button');
+const todayProjectBtn = document.querySelector('.projects>button');
 const projectBtnsContainer = document.querySelector('.projects');
 const todosContainer = document.querySelector('.todos-container');
 const dialog = document.querySelector('dialog');
@@ -186,9 +186,7 @@ addTodoBtn.addEventListener('click', eventHandlers.handleAddTodoBtnClick);
 
 addProjectBtn.addEventListener('click', eventHandlers.handleAddProjectBtnClick);
 
-projectBtns.forEach(projectBtn => {
-    projectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
-});
+todayProjectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
 
 window.addEventListener('load', () => {
     domManipulator.restoreProjectsBtns();
