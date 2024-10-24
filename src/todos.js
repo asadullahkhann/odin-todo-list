@@ -7,9 +7,4 @@ class Todo {
     };
 };
 
-const projects = {
-    'Today': [],                                                                                                                                    
-    currentProject: 'Today',
-};
-
-export { projects, Todo };
+export { Todo };
