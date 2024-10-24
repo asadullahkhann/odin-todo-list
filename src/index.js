@@ -1,5 +1,5 @@
 import './styles.css';
-import { Todo, projects } from './todos';
+import { projects, Todo } from './todos';
 
 const addProjectBtn = document.querySelector('.add-project>button');
 const addProjectInput = document.querySelector('.add-project>input');
@@ -21,7 +21,9 @@ const eventHandlers = (function() {
         dialog.addEventListener('close', eventHandlers.handleCloseForAdding);
     };
     const handleEditBtnClick = e => {
-        dynamicInfo.editTodoIndex = +e.target.parentNode.parentNode.getAttribute('data-index');
+        const projects = getProjects();
+        projects.dynamicInfo.editTodoIndex = +e.target.parentNode.parentNode.getAttribute('data-index');
+        setProjects(projects);
         domManipulator.showEditDialog();
         dialog.addEventListener('close', eventHandlers.handleCloseForEditing);
 
@@ -33,11 +35,14 @@ const eventHandlers = (function() {
             dialogInputsValues.push(dialogInput.value);
         }
         const [task, desc, dueDate] = dialogInputsValues;
+        const projects = getProjects();
         projects[projects.currentProject].push(new Todo(task, desc, priority, dueDate));
+        setProjects(projects);
         domManipulator.renderTodos();
         dialog.removeEventListener('close', eventHandlers.handleCloseForAdding);
     };
     const handleCloseForEditing = () => {
+        const projects = getProjects();
         const editTodo = projects[projects.currentProject][dynamicInfo.editTodoIndex];
         let i = 0;
         for(const prop in editTodo) {
@@ -48,11 +53,14 @@ const eventHandlers = (function() {
             editTodo[prop] = dialogInputs[i].value;
             i++;
         };
+        setProjects(projects);
         domManipulator.renderTodos();
         dialog.removeEventListener('close', eventHandlers.handleCloseForEditing);
     };
     const handleAddProjectBtnClick = () => {
+        const projects = getProjects();
         projects[addProjectInput.value] = [];
+        setProjects(projects);
         const newProjectBtn = document.createElement('button');
         newProjectBtn.textContent = '# ' + addProjectInput.value;
         newProjectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
@@ -60,12 +68,16 @@ const eventHandlers = (function() {
         projectBtnsContainer.appendChild(newProjectBtn);
     };
     const handleProjectBtnClick = e => {
+        const projects = getProjects();
         projects.currentProject = e.target.textContent.slice(2);
+        setProjects(projects);
         domManipulator.renderTodos();
     };
     const handleDeletelBtnClick = e => {
+        const projects = getProjects();
         const deleteTodoIndex = +e.target.parentNode.parentNode.getAttribute('data-index');
         projects[projects.currentProject].splice(deleteTodoIndex, 1);
+        setProjects(projects);
         domManipulator.renderTodos();
     }
     return {
@@ -88,6 +100,7 @@ const domManipulator = (function() {
     const renderTodos = () => {
         clearTodosContainer();
         let dataIndex = 0;
+        const projects = getProjects();
         for(const todo of projects[projects.currentProject]) {
             const todoDiv = document.createElement('div');
             const todoHeadingDiv = document.createElement('div');
@@ -145,4 +158,19 @@ addProjectBtn.addEventListener('click', eventHandlers.handleAddProjectBtnClick);
 
 projectBtns.forEach(projectBtn => {
     projectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
+});
+
+function getProjects() {
+    if(!localStorage.getItem('projects')) {
+        return {"Today": [], "currentProject": "Today", "dynamicInfo": {}};
+    };
+    return JSON.parse(localStorage.getItem('projects'));
+};
+
+function setProjects(obj) {
+    localStorage.setItem('projects', JSON.stringify(obj));
+};
+
+window.addEventListener('load', () => {
+    domManipulator.renderTodos();
 })
