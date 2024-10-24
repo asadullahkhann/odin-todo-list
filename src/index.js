@@ -61,11 +61,8 @@ const eventHandlers = (function() {
         const projects = getProjects();
         projects[addProjectInput.value] = [];
         setProjects(projects);
-        const newProjectBtn = document.createElement('button');
-        newProjectBtn.textContent = '# ' + addProjectInput.value;
-        newProjectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
-        addProjectInput.value = '';
-        projectBtnsContainer.appendChild(newProjectBtn);
+        domManipulator.createProjectBtn();
+
     };
     const handleProjectBtnClick = e => {
         const projects = getProjects();
@@ -148,8 +145,15 @@ const domManipulator = (function() {
             i++;
         };
         dialog.showModal();
-    }
-    return {renderTodos, showEditDialog};
+    };
+    const createProjectBtn = () => {
+        const newProjectBtn = document.createElement('button');
+        newProjectBtn.textContent = '# ' + addProjectInput.value;
+        newProjectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
+        addProjectInput.value = '';
+        projectBtnsContainer.appendChild(newProjectBtn);
+    };
+    return {renderTodos, showEditDialog, createProjectBtn};
 })();
 
 addTodoBtn.addEventListener('click', eventHandlers.handleAddTodoBtnClick);
