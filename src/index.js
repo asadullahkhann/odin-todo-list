@@ -39,7 +39,7 @@ const eventHandlers = (function() {
     };
     const handleCloseForEditing = () => {
         const projects = getProjects();
-        const editTodo = projects[projects.currentProject][dynamicInfo.editTodoIndex];
+        const editTodo = projects[projects.currentProject][projects.dynamicInfo.editTodoIndex];
         let i = 0;
         for(const prop in editTodo) {
             if(prop === 'priority') {
