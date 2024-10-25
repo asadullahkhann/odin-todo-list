@@ -129,6 +129,7 @@ const domManipulator = (function() {
         };
     };
     const showEditDialog = () => {
+        const projects = getProjects();
         const editTodo = projects[projects.currentProject][dynamicInfo.editTodoIndex];
         let i = 0;
         for(const prop in editTodo) {
