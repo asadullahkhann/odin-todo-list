@@ -54,10 +54,12 @@ const eventHandlers = (function() {
         dialog.removeEventListener('close', eventHandlers.handleCloseForEditing);
     };
     const handleAddProjectBtnClick = () => {
-        const projects = getProjects();
-        projects[addProjectInput.value] = [];
-        setProjects(projects);
-        domManipulator.createProjectBtn();
+        if(addProjectInput.value.length > 3) {
+            const projects = getProjects();
+            projects[addProjectInput.value] = [];
+            setProjects(projects);
+            domManipulator.createProjectBtn();
+        }
 
     };
     const handleProjectBtnClick = e => {
