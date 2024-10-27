@@ -58,6 +58,7 @@ body {
 .sidebar {
     background-color: var(--clr-1);
     padding: 8px;
+    width: 300px;
 }
 
 .header {
