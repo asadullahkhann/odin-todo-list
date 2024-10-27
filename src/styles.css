@@ -282,11 +282,6 @@ footer img {
     height: 2.5em;
 }
 
-.close-menu {
-    background-color: var(--clr-4);
-    border-radius: 50%;
-}
-
 .hide {
     display: none;
 }
