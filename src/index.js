@@ -112,24 +112,23 @@ const domManipulator = (function() {
         const projects = getProjects();
         for(const todo of projects[projects.currentProject]) {
             const todoDiv = document.createElement('div');
-            const todoHeadingDiv = document.createElement('div');
-            const todoContentDiv = document.createElement('div');
             const todoEditBtnDiv = document.createElement('div');
             const todoEditBtn = document.createElement('button');
             const todoDeleteBtn = document.createElement('button');
             todoDiv.classList.add('todo');
             todoDiv.setAttribute('data-index', dataIndex);
             dataIndex++;
-            todoHeadingDiv.classList.add('heading');
-            todoContentDiv.classList.add('content');
             todoEditBtnDiv.classList.add('edit-btn');
             for(const prop in todo) {
+                const columnDiv = document.createElement('div');
                 const h3 = document.createElement('h3');
                 const para = document.createElement('p');
+                columnDiv.classList.add('col');
                 h3.textContent = prop[0].toUpperCase() + prop.slice(1);
                 para.textContent = todo[prop];
-                todoHeadingDiv.appendChild(h3);
-                todoContentDiv.appendChild(para);
+                columnDiv.appendChild(h3);
+                columnDiv.appendChild(para);
+                todoDiv.appendChild(columnDiv);
             }
                 todoEditBtn.textContent = 'Edit';
                 todoEditBtn.addEventListener('click', eventHandlers.handleEditBtnClick);
@@ -137,8 +136,6 @@ const domManipulator = (function() {
                 todoDeleteBtn.addEventListener('click', eventHandlers.handleDeletelBtnClick);
                 todoEditBtnDiv.appendChild(todoEditBtn);
                 todoEditBtnDiv.appendChild(todoDeleteBtn);
-                todoDiv.appendChild(todoHeadingDiv);
-                todoDiv.appendChild(todoContentDiv);
                 todoDiv.appendChild(todoEditBtnDiv);
                 todosContainer.appendChild(todoDiv);
         };

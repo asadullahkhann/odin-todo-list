@@ -169,9 +169,6 @@ button:active {
 
 .todos-container {
     background-color: var(--clr-3);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     padding: 10px;
 }
 
@@ -203,9 +200,10 @@ button:active {
 
 .todo {
     padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    align-items: start;
+    gap: 8px;
     background-color: var(--clr-4);
     border-radius: 8px;
     border-left: 8px solid var(--clr-2);
@@ -214,8 +212,7 @@ button:active {
 
 .todo>div {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr;
-    gap: 15px;
+    gap: 8px;
 }
 
 .todo>.edit-btn{
@@ -223,13 +220,17 @@ button:active {
     justify-content: flex-end;
 }
 
-.heading>h3 {
+.col>h3 {
     font-family: 'ktf-roadbrush';
 }
 
-.content>p {
+.col>p {
     color: var(--clr-6);
     font-family: 'roboto-italic';
+}
+
+.edit-btn {
+    grid-column: 4/5;
 }
 
 .edit-btn>button {
