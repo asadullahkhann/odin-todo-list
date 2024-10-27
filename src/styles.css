@@ -170,6 +170,9 @@ button:active {
 .todos-container {
     background-color: var(--clr-3);
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .add-todo-btn {
