@@ -275,6 +275,13 @@ footer img {
     padding: 0 8px;
 }
 
+.page-header button {
+    background-color: var(--clr-1);
+    border: none;
+    width: 2.5em;
+    height: 2.5em;
+}
+
 img[alt="side-menu-icon"] {
     width: 2.5em;
     height: 2.5em;
