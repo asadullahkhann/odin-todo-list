@@ -276,13 +276,21 @@ footer img {
 }
 
 .page-header button {
-    background-color: var(--clr-1);
     border: none;
     width: 2.5em;
     height: 2.5em;
 }
 
-img[alt="side-menu-icon"] {
+.close-menu {
+    background-color: var(--clr-4);
+    border-radius: 50%;
+}
+
+.hide {
+    display: none;
+}
+
+button img {
     width: 2.5em;
     height: 2.5em;
 }
