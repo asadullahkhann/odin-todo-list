@@ -51,8 +51,8 @@
 
 body {
     height: 100%;
-    display: grid;
-    grid-template-rows: 50px 1fr 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar {
@@ -168,6 +168,7 @@ button:active {
 }
 
 .todos-container {
+    flex-grow: 1;
     background-color: var(--clr-3);
     padding: 10px;
     display: flex;
