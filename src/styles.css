@@ -295,3 +295,7 @@ dialog.sidebar {
     margin: 0;
     height: 100%;
 }
+
+button:hover {
+    cursor: pointer;
+}
