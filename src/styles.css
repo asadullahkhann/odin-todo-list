@@ -231,6 +231,7 @@ button:active {
 .col>p {
     color: var(--clr-6);
     font-family: 'roboto-italic';
+    word-break: break-word;
 }
 
 .edit-btn {
