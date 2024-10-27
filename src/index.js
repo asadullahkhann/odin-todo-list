@@ -10,6 +10,9 @@ const dialog = document.querySelector('dialog');
 const dialogInputs = document.querySelectorAll('dialog input');
 const selectEl = document.querySelector('select');
 const addTodoBtn = document.querySelector('.add-todo-btn');
+const sidebarDialog = document.querySelector('.sidebar');
+const showSidebarBtn = document.querySelector('.page-header button');
+const closeSidebarBtn = document.querySelector('.close-menu');
 
 const eventHandlers = (function() {
     const handleAddTodoBtnClick = () => {
@@ -76,6 +79,14 @@ const eventHandlers = (function() {
         setProjects(projects);
         domManipulator.renderTodos();
     }
+    const handleShowSidebarBtnClick = () => {
+        sidebarDialog.show();
+        domManipulator.toggleSidebarControlBtn();
+    }
+    const handleCloseSidebarBtnClick = () => {
+        sidebarDialog.close();
+        domManipulator.toggleSidebarControlBtn();
+    }
     return {
         handleCloseForAdding, 
         handleAddTodoBtnClick, 
@@ -84,6 +95,8 @@ const eventHandlers = (function() {
         handleAddProjectBtnClick,
         handleProjectBtnClick,
         handleDeletelBtnClick,
+        handleShowSidebarBtnClick,
+        handleCloseSidebarBtnClick
     };
 })();
 
@@ -176,12 +189,17 @@ const domManipulator = (function() {
             };
         })
     };
+    const toggleSidebarControlBtn = () => {
+        showSidebarBtn.classList.toggle('hide');
+        closeSidebarBtn.classList.toggle('hide');
+    }
     return {
         renderTodos, 
         showEditDialog, 
         createProjectBtn, 
         restoreProjectsBtns,
         changeColorsOfSelectedProjectBtn,
+        toggleSidebarControlBtn,
     };
 })();
 
@@ -195,3 +213,6 @@ window.addEventListener('load', () => {
     domManipulator.restoreProjectsBtns();
     domManipulator.renderTodos();
 });
+
+showSidebarBtn.addEventListener('click', eventHandlers.handleShowSidebarBtnClick);
+closeSidebarBtn.addEventListener('click', eventHandlers.handleCloseSidebarBtnClick)
