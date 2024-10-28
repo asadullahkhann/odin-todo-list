@@ -153,7 +153,7 @@ button:active {
 }
 
 .projects>button {
-    padding: 0 8px;
+    padding: 5px;
     border: none;
     background-color: var(--clr-1);
     color: var(--clr-4);
