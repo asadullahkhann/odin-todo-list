@@ -110,9 +110,9 @@ button {
 }
 
 .add-project>button {
-    padding: 6px 12px;
+    padding: 4px 8px;
     border: none;
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-family: 'inter';
     background-color: var(--clr-4);
     color: var(--clr-1);
