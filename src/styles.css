@@ -161,6 +161,7 @@ button:active {
     font-family: 'falling-sky';
     white-space: nowrap;
     text-align: left;
+    line-height: 1.5rem;
 }
 
 .projects>button:hover {
