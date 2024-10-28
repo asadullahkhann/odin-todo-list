@@ -19,8 +19,8 @@
 }
 
 @font-face {
-    font-family: 'falling-sky';
-    src: url('./fonts/FallingSky-JKwK.otf');
+    font-family: 'inter';
+    src: url('./fonts/Inter-Regular.otf');
 }
 
 @font-face {
@@ -158,7 +158,7 @@ button:active {
     background-color: var(--clr-1);
     color: var(--clr-4);
     font-size: 1rem;
-    font-family: 'falling-sky';
+    font-family: 'inter';
     white-space: nowrap;
     text-align: left;
     line-height: 1.5rem;
