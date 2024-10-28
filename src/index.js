@@ -125,6 +125,9 @@ const domManipulator = (function() {
                 const para = document.createElement('p');
                 columnDiv.classList.add('col');
                 h3.textContent = prop[0].toUpperCase() + prop.slice(1);
+                if(prop === 'dueDate') {
+                    h3.textContent = `${prop[0].toUpperCase()}${prop.slice(1,3)}-${prop.slice(3)}`;
+                };
                 para.textContent = todo[prop];
                 columnDiv.appendChild(h3);
                 columnDiv.appendChild(para);
