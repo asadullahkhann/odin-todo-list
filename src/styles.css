@@ -109,8 +109,11 @@ button {
     border-radius: 5px;
 }
 
-.add-project>button {
+.add-project>button, .add-project>input {
     padding: 4px 8px;
+}
+
+.add-project>button {
     border: none;
     font-size: 0.75rem;
     font-family: 'inter';
