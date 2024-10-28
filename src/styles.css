@@ -149,7 +149,6 @@ button:active {
     padding-top: 16px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 16px;
 }
 
@@ -161,6 +160,7 @@ button:active {
     font-size: 1.5rem;
     font-family: 'falling-sky';
     white-space: nowrap;
+    text-align: left;
 }
 
 .projects>button:hover {
