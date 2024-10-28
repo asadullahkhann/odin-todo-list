@@ -164,7 +164,7 @@ button:active {
 }
 
 .projects>button:hover {
-    box-shadow: 2px 2px 6px; 
+    background-color: rgb(255 255 255 / .5);
 }
 
 .todos-container {
