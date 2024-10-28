@@ -37,7 +37,7 @@ body {
 
 .sidebar {
     background-color: var(--clr-1);
-    padding: 8px;
+    padding: 0;
     width: 300px;
 }
 
@@ -45,13 +45,14 @@ body {
     font-family: 'ktf-roadbrush';
     font-size: 2rem;
     color: var(--clr-4);
-    padding-bottom: 16px;
+    padding: 8px 0 16px 8px;
 }
 
 .add-project {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    padding: 0 8px;
 }
 
 dialog {
@@ -124,9 +125,8 @@ button:active {
 .submit-btn:hover, .todos-container button:hover {
     box-shadow: 2px 2px 8px;
 }
-
 .projects {
-    padding-top: 16px;
+    padding: 32px 8px 0 8px;
     display: flex;
     flex-direction: column;
 }
