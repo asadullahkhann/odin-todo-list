@@ -150,7 +150,7 @@ const domManipulator = (function() {
         for(const prop in editTodo) {
             if(prop === 'priority') {
                 dialog.querySelectorAll('option').forEach(option => {
-                    if(option.value === prop) option.selected === true;
+                    if(option.value === editTodo[prop]) option.selected = true;
                 });
                 continue;
             };
