@@ -289,3 +289,14 @@ dialog.sidebar {
 button:hover {
     cursor: pointer;
 }
+
+.page-header>div {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.page-header>div>img {
+    width: 2.5em;
+    height: 2.5em;
+}
