@@ -13,6 +13,11 @@
     src: url('./fonts/Norse-Bold.otf');
 }
 
+@font-face {
+    font-family: 'knight-warrior';
+    src: url('./fonts/KnightWarrior-w16n8.otf');
+}
+
 :root {
     --clr-1: #1992d2;
     --clr-2: #facc15;
@@ -235,7 +240,7 @@ footer {
 
 footer>p {
     font-size: 1rem;
-    font-family: 'inter';
+    font-family: 'knight-warrior';
 }
 
 footer a {
