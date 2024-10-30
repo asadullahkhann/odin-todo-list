@@ -16,7 +16,7 @@ const closeSidebarBtn = document.querySelector('.close-menu');
 
 const eventHandlers = (function() {
     const handleAddTodoBtnClick = () => {
-        dialog.showModal();
+        domManipulator.showDialogForAddingTodo();
         dialog.addEventListener('close', eventHandlers.handleCloseForAdding);
     };
     const handleEditBtnClick = e => {
@@ -96,7 +96,7 @@ const eventHandlers = (function() {
         handleProjectBtnClick,
         handleDeletelBtnClick,
         handleShowSidebarBtnClick,
-        handleCloseSidebarBtnClick
+        handleCloseSidebarBtnClick,
     };
 })();
 
@@ -142,6 +142,13 @@ const domManipulator = (function() {
                 todoDiv.appendChild(todoEditBtnDiv);
                 todosContainer.appendChild(todoDiv);
         };
+    };
+    const showDialogForAddingTodo = () => {
+        dialogInputs.forEach(dialogInput => {
+            dialogInput.value = '';
+        });
+        dialog.querySelector('option').selected = true;
+        dialog.showModal();
     };
     const showEditDialog = () => {
         const projects = getProjects();
@@ -200,6 +207,7 @@ const domManipulator = (function() {
         restoreProjectsBtns,
         changeColorsOfSelectedProjectBtn,
         toggleSidebarControlBtn,
+        showDialogForAddingTodo,
     };
 })();
 
