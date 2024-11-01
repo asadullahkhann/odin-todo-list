@@ -124,7 +124,7 @@ const domManipulator = (function() {
                 const h3 = document.createElement('h3');
                 const para = document.createElement('p');
                 columnDiv.classList.add('col');
-                h3.textContent = `${prop[0].toUpperCase()} ${prop.slice(1)}`;
+                h3.textContent = `${prop[0].toUpperCase()}${prop.slice(1)}`;
                 if(prop === 'dueDate') {
                     h3.textContent = `${prop[0].toUpperCase()}${prop.slice(1,3)}-${prop.slice(3)}`;
                 };
