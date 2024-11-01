@@ -124,7 +124,7 @@ const domManipulator = (function() {
                 const h3 = document.createElement('h3');
                 const para = document.createElement('p');
                 columnDiv.classList.add('col');
-                h3.textContent = prop[0].toUpperCase() + prop.slice(1);
+                h3.textContent = `${prop[0].toUpperCase()} ${prop.slice(1)}`;
                 if(prop === 'dueDate') {
                     h3.textContent = `${prop[0].toUpperCase()}${prop.slice(1,3)}-${prop.slice(3)}`;
                 };
@@ -168,7 +168,7 @@ const domManipulator = (function() {
     };
     const createProjectBtn = () => {
         const newProjectBtn = document.createElement('button');
-        newProjectBtn.textContent = '# ' + addProjectInput.value;
+        newProjectBtn.textContent = `# ${addProjectInput.value}`;
         newProjectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
         addProjectInput.value = '';
         projectBtnsContainer.appendChild(newProjectBtn);
@@ -178,7 +178,7 @@ const domManipulator = (function() {
         for(const prop in projects) {
             if(prop === 'Today' || prop === 'currentProject' || prop === 'dynamicInfo') continue;
             const projectBtn = document.createElement('button');
-            projectBtn.textContent = '# ' + prop;
+            projectBtn.textContent = `# ${prop}`;
             projectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
             projectBtnsContainer.appendChild(projectBtn);
         };
