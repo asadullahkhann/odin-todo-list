@@ -1,62 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-</head>
-<body>
+  </head>
+  <body>
     <dialog>
-        <form method="dialog">
-            <p><label for="todo">Todo</label><input required id="todo" name="todo" minlength="4" maxlength="20"></p>
-            <p><label for="desc">Description</label><input required id="desc" name="desc" minlength="8" type="text"></p>
-            <p><label for="priority">Priority </label><select name="priority" id="priority">
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-            </select></p>
-            <p><label for="due-date">Due Date</label><input required id="due-date" name="dueDate" type="date"></p>
-            <p><button class="submit-btn">Submit</button></p>
-        </form>
+      <form method="dialog">
+        <p>
+          <label for="todo">Todo</label
+          ><input required id="todo" name="todo" minlength="4" maxlength="20" />
+        </p>
+        <p>
+          <label for="desc">Description</label
+          ><input required id="desc" name="desc" minlength="8" type="text" />
+        </p>
+        <p>
+          <label for="priority">Priority </label
+          ><select name="priority" id="priority">
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </p>
+        <p>
+          <label for="due-date">Due Date</label
+          ><input required id="due-date" name="dueDate" type="date" />
+        </p>
+        <p><button class="submit-btn">Submit</button></p>
+      </form>
     </dialog>
     <div class="page-header">
-        <div>
-            <img src="./images/todo-list.svg" alt="todo-list-svg">
-            <h1>To Do List</h1>
-        </div>
-        <button><img src ="./images/icons8-menu.svg" alt="side-menu-icon"></button>
-        <button class="close-menu hide"><img src="./images/icons8-close.svg" alt="icons8-close"></button>
+      <div>
+        <img src="./images/todo-list.svg" alt="todo-list-svg" />
+        <h1>To Do List</h1>
+      </div>
+      <button>
+        <img src="./images/icons8-menu.svg" alt="side-menu-icon" />
+      </button>
+      <button class="close-menu hide">
+        <img src="./images/icons8-close.svg" alt="icons8-close" />
+      </button>
     </div>
     <dialog class="sidebar">
-        <div class="header">Projects</div>
-        <div class="add-project"><input maxlength="20" type="text"><button>Add project</button></div>
-        <div class="projects">
-            <button class="today"># Today</button>
-        </div>
+      <div class="header">Projects</div>
+      <div class="add-project">
+        <input maxlength="20" type="text" /><button>Add project</button>
+      </div>
+      <div class="projects">
+        <button class="today"># Today</button>
+      </div>
     </dialog>
     <div class="todos-container">
-        <div class="todo">
-            <!-- For testing only -->
-            <div class="col">
-                <h3>Todo</h3>
-                <p>Wash dishes</p>
-            </div>
-            <div class="col">
-                <h3>Description</h3>
-                <p>dishes need to be washed before mom gets home</p>
-            </div>
-            <div class="col">
-                <h3>Priority</h3>
-                <p>High</p>
-            </div>
-            <div class="col">
-                <h3>Due</h3>
-                <p>2/9/24</p>
-            </div>
-            <div class="edit-btn"><button>Edit</button> <button>Delete</button></div>
+      <div class="todo">
+        <!-- For testing only -->
+        <div class="col">
+          <h3>Todo</h3>
+          <p>Wash dishes</p>
         </div>
+        <div class="col">
+          <h3>Description</h3>
+          <p>dishes need to be washed before mom gets home</p>
+        </div>
+        <div class="col">
+          <h3>Priority</h3>
+          <p>High</p>
+        </div>
+        <div class="col">
+          <h3>Due</h3>
+          <p>2/9/24</p>
+        </div>
+        <div class="edit-btn">
+          <button>Edit</button> <button>Delete</button>
+        </div>
+      </div>
     </div>
     <div class="add-todo-btn"><button>+</button></div>
-    <footer><p>Coded by <a href="https://github.com/asadullahkhann">AsadUllahKhann <img src="./images/github-mark.svg" alt="github-mark"></a></p></footer>
-</body>
+    <footer>
+      <p>
+        Coded by
+        <a href="https://github.com/asadullahkhann"
+          >AsadUllahKhann <img src="./images/github-mark.svg" alt="github-mark"
+        /></a>
+      </p>
+    </footer>
+  </body>
 </html>
