@@ -1,6 +1,8 @@
 import "./styles.css";
+import dotsImg from './images/3-dots.svg';
 import { Todo, getProjects, setProjects } from "./todos";
-
+import { toggleDropdown } from './dropdownFunctions'
+;
 const addProjectBtn = document.querySelector(".add-project>button");
 const addProjectInput = document.querySelector(".add-project>input");
 const todayProjectBtn = document.querySelector(".projects>button");
@@ -77,7 +79,7 @@ const eventHandlers = (function () {
   const handleDeletelBtnClick = (e) => {
     const projects = getProjects();
     const deleteTodoIndex =
-      +e.target.parentNode.parentNode.getAttribute("data-index");
+      +e.target.parentNode.parentNode.parentNode.getAttribute("data-index");
     projects[projects.currentProject].splice(deleteTodoIndex, 1);
     setProjects(projects);
     domManipulator.renderTodos();
@@ -90,6 +92,10 @@ const eventHandlers = (function () {
     sidebarDialog.close();
     domManipulator.toggleSidebarControlBtn();
   };
+  const handleToggleDropdownBtnClick = (e) => {
+    const targetDropdown = e.currentTarget.parentNode.nextSibling;
+    toggleDropdown(targetDropdown);
+  }
   return {
     handleCloseForAdding,
     handleAddTodoBtnClick,
@@ -100,6 +106,7 @@ const eventHandlers = (function () {
     handleDeletelBtnClick,
     handleShowSidebarBtnClick,
     handleCloseSidebarBtnClick,
+    handleToggleDropdownBtnClick
   };
 })();
 
@@ -116,6 +123,10 @@ const domManipulator = (function () {
     for (const todo of projects[projects.currentProject]) {
       const todoDiv = document.createElement("div");
       const todoEditBtnDiv = document.createElement("div");
+      const toggleDropdownDiv = document.createElement('div');
+      const dropdownDiv = document.createElement('div');
+      const toggleDropdownBtn = document.createElement('button');
+      const toggleDropdownBtnImg = document.createElement('img');
       const todoEditBtn = document.createElement("button");
       const todoDeleteBtn = document.createElement("button");
       todoDiv.classList.add("todo");
@@ -136,6 +147,7 @@ const domManipulator = (function () {
         columnDiv.appendChild(para);
         todoDiv.appendChild(columnDiv);
       }
+      toggleDropdownBtn.addEventListener('click', eventHandlers.handleToggleDropdownBtnClick);
       todoEditBtn.textContent = "Edit";
       todoEditBtn.addEventListener("click", eventHandlers.handleEditBtnClick);
       todoDeleteBtn.textContent = "Delete";
@@ -143,8 +155,15 @@ const domManipulator = (function () {
         "click",
         eventHandlers.handleDeletelBtnClick,
       );
-      todoEditBtnDiv.appendChild(todoEditBtn);
-      todoEditBtnDiv.appendChild(todoDeleteBtn);
+      toggleDropdownBtnImg.setAttribute('src', dotsImg);
+      toggleDropdownBtn.appendChild(toggleDropdownBtnImg);
+      toggleDropdownDiv.appendChild(toggleDropdownBtn);
+      dropdownDiv.appendChild(todoEditBtn);
+      dropdownDiv.appendChild(todoDeleteBtn);
+      toggleDropdownDiv.classList.add('toggle-dropdown');
+      dropdownDiv.classList.add('dropdown', 'hide');
+      todoEditBtnDiv.appendChild(toggleDropdownDiv);
+      todoEditBtnDiv.appendChild(dropdownDiv);
       todoDiv.appendChild(todoEditBtnDiv);
       todosContainer.appendChild(todoDiv);
     }

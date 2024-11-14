@@ -126,8 +126,7 @@ button:active {
   opacity: 0.5;
 }
 
-.submit-btn:hover,
-.todos-container button:hover {
+.submit-btn:hover {
   box-shadow: 2px 2px 8px;
 }
 .projects {
@@ -199,9 +198,42 @@ button:active {
   gap: 8px;
 }
 
-.todo > .edit-btn {
-  display: flex;
-  justify-content: flex-end;
+.edit-btn {
+  position: relative;
+  justify-self: end;
+}
+
+.toggle-dropdown > button {
+  background-color: var(--clr-4);
+  border: none;
+}
+
+.toggle-dropdown img {
+  width: 30px;
+  height: 30px;
+  transform: rotate(90deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: 30px;
+  background-color: var(--clr-3);
+  box-shadow: 0px 2px 6px #000;
+  border-radius: 2px;
+}
+
+.dropdown > button {
+  border: none;
+  border-radius: 2px;
+  padding: 4px;
+  width: 100%;
+  text-align: left;
+  font-family: 'inter';
+  background-color: var(--clr-4);
+}
+
+.dropdown > button:hover {
+  background-color: rgb(255 255 255 / .5);
 }
 
 .col > h3 {
@@ -216,12 +248,6 @@ button:active {
 
 .edit-btn {
   grid-column: 4/5;
-}
-
-.edit-btn > button {
-  padding: 4px 8px;
-  background-color: var(--clr-3);
-  font-family: "inter";
 }
 
 .projects > .selected-project-btn {
