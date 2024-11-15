@@ -1,10 +1,13 @@
 function toggleDropdown(targetDropdown) {
-    document.querySelectorAll('.dropdown').forEach(dropdown => {
-      if(!(dropdown === targetDropdown)) {
-        dropdown.setAttribute('class', 'dropdown hide');
-      }
-    });
     targetDropdown.classList.toggle('hide');
 }
 
-export { toggleDropdown };
+function closeOtherEditDropdowns(activeDropdown) {
+  document.querySelectorAll('.edit-btn>.dropdown').forEach(dropdown => {
+    if(!(dropdown === activeDropdown)) {
+      dropdown.setAttribute('class', 'dropdown hide');
+    }
+  });
+}
+
+export { toggleDropdown, closeOtherEditDropdowns };

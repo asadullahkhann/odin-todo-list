@@ -35,10 +35,11 @@ body {
   flex-direction: column;
 }
 
-.sidebar {
+body > .dropdown {
   background-color: var(--clr-1);
   padding: 0;
   width: 300px;
+  height: 100%;
 }
 
 .header {
@@ -216,9 +217,12 @@ button:active {
 
 .dropdown {
   position: absolute;
+  box-shadow: 0px 2px 6px #000;
+}
+
+.edit-btn > .dropdown {
   top: 30px;
   background-color: var(--clr-3);
-  box-shadow: 0px 2px 6px #000;
   border-radius: 2px;
 }
 
@@ -308,11 +312,6 @@ button img {
 
 h1 {
   font-family: "norse-bold";
-}
-
-dialog.sidebar {
-  margin: 0;
-  height: 100%;
 }
 
 button:hover {

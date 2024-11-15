@@ -1,7 +1,7 @@
 import "./styles.css";
 import dotsImg from './images/3-dots.svg';
 import { Todo, getProjects, setProjects } from "./todos";
-import { toggleDropdown } from './dropdownFunctions'
+import { toggleDropdown, closeOtherEditDropdowns } from './dropdownFunctions'
 ;
 const addProjectBtn = document.querySelector(".add-project>button");
 const addProjectInput = document.querySelector(".add-project>input");
@@ -12,7 +12,7 @@ const dialog = document.querySelector("dialog");
 const dialogInputs = document.querySelectorAll("dialog input");
 const selectEl = document.querySelector("select");
 const addTodoBtn = document.querySelector(".add-todo-btn");
-const sidebarDialog = document.querySelector(".sidebar");
+const sidebarDropdown = document.querySelector("body>.dropdown");
 const showSidebarBtn = document.querySelector(".page-header button");
 const closeSidebarBtn = document.querySelector(".close-menu");
 
@@ -85,15 +85,16 @@ const eventHandlers = (function () {
     domManipulator.renderTodos();
   };
   const handleShowSidebarBtnClick = () => {
-    sidebarDialog.show();
+    toggleDropdown(sidebarDropdown);
     domManipulator.toggleSidebarControlBtn();
   };
   const handleCloseSidebarBtnClick = () => {
-    sidebarDialog.close();
+    toggleDropdown(sidebarDropdown);
     domManipulator.toggleSidebarControlBtn();
   };
   const handleToggleDropdownBtnClick = (e) => {
     const targetDropdown = e.currentTarget.parentNode.nextSibling;
+    closeOtherEditDropdowns(targetDropdown);
     toggleDropdown(targetDropdown);
   }
   return {
