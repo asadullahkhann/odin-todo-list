@@ -1,8 +1,8 @@
 import "./styles.css";
 import dotsImg from './images/3-dots.svg';
 import { Todo, getProjects, setProjects } from "./todos";
-import { toggleDropdown, closeOtherEditDropdowns } from './dropdownFunctions'
-;
+import { toggleDropdown } from './dropdownFunctions';
+
 const addProjectBtn = document.querySelector(".add-project>button");
 const addProjectInput = document.querySelector(".add-project>input");
 const todayProjectBtn = document.querySelector(".projects>button");
@@ -93,9 +93,13 @@ const eventHandlers = (function () {
     domManipulator.toggleSidebarControlBtn();
   };
   const handleToggleDropdownBtnClick = (e) => {
-    const targetDropdown = e.currentTarget.parentNode.nextSibling;
-    closeOtherEditDropdowns(targetDropdown);
-    toggleDropdown(targetDropdown);
+    const thisDropdown = e.currentTarget.parentNode.nextSibling;
+    document.querySelectorAll('.edit-btn>.dropdown').forEach(dropdown => {
+      if(!(dropdown === thisDropdown)) {
+        dropdown.setAttribute('class', 'dropdown hide');
+      }
+    });
+    toggleDropdown(thisDropdown);
   }
   return {
     handleCloseForAdding,
