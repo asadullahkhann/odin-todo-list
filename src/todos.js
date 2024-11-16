@@ -53,6 +53,13 @@ function editTodo(todoIndex, values) {
   setProjects(projects);
 }
 
-export { getProjects, addProject, changeCurrentProject, addTodo, deleteTodo, editTodo };
+export { 
+  getProjects, 
+  addProject, 
+  changeCurrentProject,
+  addTodo, 
+  deleteTodo, 
+  editTodo 
+};
 
 
