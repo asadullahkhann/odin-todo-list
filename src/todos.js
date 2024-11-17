@@ -8,14 +8,14 @@ class Todo {
 }
 
 function getProjects() {
-  if (!localStorage.getItem("projects")) {
-    return { Today: [], currentProject: "Today", };
+  if (!localStorage.getItem('projects')) {
+    return { Today: [], currentProject: 'Today', };
   }
-  return JSON.parse(localStorage.getItem("projects"));
+  return JSON.parse(localStorage.getItem('projects'));
 }
 
 function setProjects(obj) {
-  localStorage.setItem("projects", JSON.stringify(obj));
+  localStorage.setItem('projects', JSON.stringify(obj));
 }
 
 function addProject(projectName) {
