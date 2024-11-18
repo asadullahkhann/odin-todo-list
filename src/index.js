@@ -28,12 +28,17 @@ const dynamicInfo = { editTodoIndex: null };
 
 // to be able to remove event listeners
 const eventHandlers = (function () {
-  const handleCloseForAdding = () => {
+  const getDialogInputValues = () => {
     const values = [...dialogInputs]
       .map((dialogInput) => dialogInput.value)
       .slice(0, 2);
     values.push(selectEl.value);
     values.push(dialogInputs[dialogInputs.length - 1].value);
+    return values;
+  };
+
+  const handleCloseForAdding = () => {
+    const values = getDialogInputValues();
     addTodo(values);
     domManipulator.renderTodos();
     domManipulator.addEventHandlersToTodoBtns();
@@ -42,11 +47,7 @@ const eventHandlers = (function () {
 
   const handleCloseForEditing = () => {
     const todoIndex = dynamicInfo.editTodoIndex;
-    const values = [...dialogInputs]
-      .map((dialogInput) => dialogInput.value)
-      .slice(0, 2);
-    values.push(selectEl.value);
-    values.push(dialogInputs[dialogInputs.length - 1].value);
+    const values = getDialogInputValues();
     editTodo(todoIndex, values);
     domManipulator.renderTodos();
     domManipulator.addEventHandlersToTodoBtns();
@@ -66,6 +67,12 @@ const eventHandlers = (function () {
     domManipulator.toggleSidebarControlBtn();
   };
 
+  const getIndexOfThisTodo = (e) => {
+    const index =
+      e.target.parentNode.parentNode.parentNode.getAttribute("data-index");
+    return Number(index);
+  };
+
   const toggleEditDropdown = (e) => {
     const thisDropdown = e.currentTarget.parentNode.nextSibling;
     document.querySelectorAll(".edit-btn>.dropdown").forEach((dropdown) => {
@@ -77,17 +84,15 @@ const eventHandlers = (function () {
   };
 
   const handleEditBtnClick = (e) => {
-    dynamicInfo.editTodoIndex =
-      +e.target.parentNode.parentNode.parentNode.getAttribute("data-index");
+    dynamicInfo.editTodoIndex = getIndexOfThisTodo(e);
     domManipulator.showDialogForEditingTodo();
     dialog.addEventListener("close", eventHandlers.handleCloseForEditing);
   };
 
   const handleDeleteBtnClick = (e) => {
     const projects = getProjects();
-    const todoIndex =
-      +e.target.parentNode.parentNode.parentNode.getAttribute("data-index");
-    deleteTodo(projects.currentProject, todoIndex);
+    const indexOfThisTodo = getIndexOfThisTodo(e);
+    deleteTodo(projects.currentProject, indexOfThisTodo);
     domManipulator.renderTodos();
     domManipulator.addEventHandlersToTodoBtns();
   };
