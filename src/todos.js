@@ -8,14 +8,14 @@ class Todo {
 }
 
 function getProjects() {
-  if (!localStorage.getItem('projects')) {
-    return { Today: [], currentProject: 'Today', };
+  if (!localStorage.getItem("projects")) {
+    return { Today: [], currentProject: "Today" };
   }
-  return JSON.parse(localStorage.getItem('projects'));
+  return JSON.parse(localStorage.getItem("projects"));
 }
 
 function setProjects(obj) {
-  localStorage.setItem('projects', JSON.stringify(obj));
+  localStorage.setItem("projects", JSON.stringify(obj));
 }
 
 function addProject(projectName) {
@@ -27,7 +27,7 @@ function addProject(projectName) {
 function changeCurrentProject(projectName) {
   const projects = getProjects();
   projects.currentProject = projectName;
-  setProjects(projects); 
+  setProjects(projects);
 }
 
 function addTodo(values) {
@@ -40,26 +40,24 @@ function deleteTodo(project, index) {
   const projects = getProjects();
   projects[project].splice(index, 1);
   setProjects(projects);
-};
+}
 
 function editTodo(todoIndex, values) {
   const projects = getProjects();
   const todo = projects[projects.currentProject][todoIndex];
   let i = 0;
-  for(const prop in todo) {
+  for (const prop in todo) {
     todo[prop] = values[i];
     i += 1;
-  };
+  }
   setProjects(projects);
 }
 
-export { 
-  getProjects, 
-  addProject, 
+export {
+  getProjects,
+  addProject,
   changeCurrentProject,
-  addTodo, 
-  deleteTodo, 
-  editTodo 
+  addTodo,
+  deleteTodo,
+  editTodo,
 };
-
-
