@@ -67,12 +67,6 @@ const eventHandlers = (function () {
     domManipulator.toggleSidebarControlBtn();
   };
 
-  const getIndexOfThisTodo = (e) => {
-    const index =
-      e.target.parentNode.parentNode.parentNode.getAttribute("data-index");
-    return Number(index);
-  };
-
   const toggleEditDropdown = (e) => {
     const thisDropdown = e.currentTarget.parentNode.nextSibling;
     document.querySelectorAll(".edit-btn>.dropdown").forEach((dropdown) => {
@@ -81,6 +75,12 @@ const eventHandlers = (function () {
       }
     });
     toggleDropdown(thisDropdown);
+  };
+
+  const getIndexOfThisTodo = (e) => {
+    const index =
+      e.target.parentNode.parentNode.parentNode.getAttribute("data-index");
+    return Number(index);
   };
 
   const handleEditBtnClick = (e) => {
