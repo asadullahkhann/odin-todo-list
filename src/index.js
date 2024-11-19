@@ -20,8 +20,8 @@ const dialogInputs = document.querySelectorAll("dialog input");
 const selectEl = document.querySelector("select");
 const addTodoBtn = document.querySelector(".add-todo-btn");
 const sidebarDropdown = document.querySelector("body>.dropdown");
-const showSidebarBtn = document.querySelector(".page-header button");
-const closeSidebarBtn = document.querySelector(".close-menu");
+const toggleSidebarBtn = document.querySelector(".page-header button");
+const toggleSidebarBtnImgs = document.querySelectorAll('.page-header>button>img');
 
 // to be able to access this info from multiple places
 const dynamicInfo = { editTodoIndex: null };
@@ -63,8 +63,10 @@ const eventHandlers = (function () {
   };
 
   const toggleSidebarDropdown = () => {
+    toggleSidebarBtnImgs.forEach(toggleSidebarBtnImg => {
+      toggleSidebarBtnImg.classList.toggle('hide');
+    });
     toggleDropdown(sidebarDropdown);
-    domManipulator.toggleSidebarControlBtn();
   };
 
   const toggleEditDropdown = (e) => {
@@ -213,11 +215,6 @@ const domManipulator = (function () {
     });
   };
 
-  const toggleSidebarControlBtn = () => {
-    showSidebarBtn.classList.toggle("hide");
-    closeSidebarBtn.classList.toggle("hide");
-  };
-
   return {
     renderTodos,
     addEventHandlersToTodoBtns,
@@ -225,7 +222,6 @@ const domManipulator = (function () {
     createProjectBtn,
     restoreProjectsBtns,
     changeColorsOfSelectedProjectBtn,
-    toggleSidebarControlBtn,
     showDialogForAddingTodo,
   };
 })();
@@ -251,5 +247,4 @@ window.addEventListener("load", () => {
   domManipulator.addEventHandlersToTodoBtns();
 });
 
-showSidebarBtn.addEventListener("click", eventHandlers.toggleSidebarDropdown);
-closeSidebarBtn.addEventListener("click", eventHandlers.toggleSidebarDropdown);
+toggleSidebarBtn.addEventListener("click", eventHandlers.toggleSidebarDropdown);
