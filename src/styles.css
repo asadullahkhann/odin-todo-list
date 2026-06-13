@@ -38,8 +38,12 @@
   color: var(--text-on-primary);
 }
 
-html, body, .sidebar {
+html {
   height: 100%;
+}
+
+body {
+  min-height: 100%;
 }
 
 body {
@@ -73,6 +77,7 @@ header {
 }
 
 .sidebar {
+  height: 100%;
   position: fixed;
   width: 250px;
   box-shadow: 0px 2px 6px #000;
