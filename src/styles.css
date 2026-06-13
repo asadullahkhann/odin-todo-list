@@ -305,6 +305,7 @@ input:focus, select:focus, textarea:focus {
 
 footer {
   justify-content: center;
+  margin-top: auto;
 }
 
 footer > p {
