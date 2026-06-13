@@ -1,46 +1,38 @@
-import dotsImg from "./images/3-dots.svg";
-
-const todosContainer = document.querySelector(".todos-container");
+const todosContainer = document.querySelector('.todos-container');
 
 function createVisualTodo(todoObj, todoIndex) {
-  const todoDiv = document.createElement("div");
-  const todoEditBtnDiv = document.createElement("div");
-  const toggleDropdownDiv = document.createElement("div");
-  const dropdownDiv = document.createElement("div");
-  const toggleDropdownBtn = document.createElement("button");
-  const toggleDropdownBtnImg = document.createElement("img");
-  const todoEditBtn = document.createElement("button");
-  const todoDeleteBtn = document.createElement("button");
-  todoDiv.classList.add("todo");
-  todoDiv.setAttribute("data-index", todoIndex);
-  todoEditBtnDiv.classList.add("edit-btn");
+  const todoDiv = document.createElement('div');
+  const dropdownDiv = document.createElement('div');
+  const toggleDropdownBtn = document.createElement('button');
+  const todoEditBtn = document.createElement('button');
+  const todoDeleteBtn = document.createElement('button');
+  todoDiv.classList.add('todo');
+  todoDiv.setAttribute('data-index', todoIndex);
+  toggleDropdownBtn.classList.add('toggle-dropdown');
   for (const prop in todoObj) {
-    const columnDiv = document.createElement("div");
-    const h3 = document.createElement("h3");
-    const para = document.createElement("p");
-    columnDiv.classList.add("col");
+    const rowDiv = document.createElement('div');
+    const h3 = document.createElement('h3');
+    const para = document.createElement('p');
+    rowDiv.classList.add('row');
     h3.textContent = `${prop[0].toUpperCase()}${prop.slice(1)}`;
-    if (prop === "dueDate") {
-      h3.textContent = `${prop[0].toUpperCase()}${prop.slice(1, 3)}-${prop.slice(3)}`;
+    if (prop === 'dueDate') {
+      h3.textContent = 'Due Date';
     }
-    para.textContent = todoObj[prop];
-    columnDiv.appendChild(h3);
-    columnDiv.appendChild(para);
-    todoDiv.appendChild(columnDiv);
+    para.textContent = todoObj[prop].replaceAll('-', '/');
+    rowDiv.appendChild(h3);
+    rowDiv.appendChild(para);
+    todoDiv.appendChild(rowDiv);
   }
-  todoEditBtn.textContent = "Edit";
-  todoDeleteBtn.textContent = "Delete";
-  toggleDropdownBtnImg.setAttribute("src", dotsImg);
-  toggleDropdownBtn.appendChild(toggleDropdownBtnImg);
-  toggleDropdownDiv.appendChild(toggleDropdownBtn);
+  toggleDropdownBtn.textContent = '⋮';
+  todoEditBtn.textContent = 'Edit';
+  todoDeleteBtn.textContent = 'Delete';
   dropdownDiv.appendChild(todoEditBtn);
   dropdownDiv.appendChild(todoDeleteBtn);
-  toggleDropdownDiv.classList.add("toggle-dropdown");
-  dropdownDiv.classList.add("dropdown", "hide");
-  todoEditBtnDiv.appendChild(toggleDropdownDiv);
-  todoEditBtnDiv.appendChild(dropdownDiv);
-  todoDiv.appendChild(todoEditBtnDiv);
+  dropdownDiv.classList.add('dropdown', 'hide');
+  todoDiv.appendChild(toggleDropdownBtn);
+  todoDiv.appendChild(dropdownDiv);
   todosContainer.appendChild(todoDiv);
+  todosContainer.classList.remove('empty');
 }
 
 export { createVisualTodo };

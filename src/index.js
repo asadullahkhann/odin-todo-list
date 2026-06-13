@@ -1,4 +1,4 @@
-import "./styles.css";
+import './styles.css';
 import {
   getProjects,
   addProject,
@@ -6,22 +6,24 @@ import {
   addTodo,
   deleteTodo,
   editTodo,
-} from "./todos";
-import { toggleDropdown } from "./dropdownFunctions";
-import { createVisualTodo } from "./visualTodoCreator";
+} from './todos';
+import { toggleDropdown } from './dropdownFunctions';
+import { createVisualTodo } from './visualTodoCreator';
 
-const addProjectBtn = document.querySelector(".add-project>button");
-const addProjectInput = document.querySelector(".add-project>input");
-const todayProjectBtn = document.querySelector(".projects>button");
-const projectBtnsContainer = document.querySelector(".projects");
-const todosContainer = document.querySelector(".todos-container");
-const dialog = document.querySelector("dialog");
-const dialogInputs = document.querySelectorAll("dialog input");
-const selectEl = document.querySelector("select");
-const addTodoBtn = document.querySelector(".add-todo-btn");
-const sidebarDropdown = document.querySelector("body>.dropdown");
-const toggleSidebarBtn = document.querySelector(".page-header button");
-const toggleSidebarBtnImgs = document.querySelectorAll('.page-header>button>img');
+const addProjectBtn = document.querySelector('.add-project>button');
+const addProjectInput = document.querySelector('.add-project>input');
+const todayProjectBtn = document.querySelector('.projects>button');
+const projectBtnsContainer = document.querySelector('.projects');
+const todosContainer = document.querySelector('.todos-container');
+const dialog = document.querySelector('dialog');
+const dialogInputs = document.querySelectorAll('dialog input');
+const descTextArea = document.querySelector('textarea');
+const selectEl = document.querySelector('select');
+const addTodoBtn = document.querySelector('.add-todo-btn');
+const sidebar = document.querySelector('.sidebar');
+const toggleSidebarBtn = document.querySelector('header button');
+const toggleSidebarBtnImgs = document.querySelectorAll('header>button>img');
+const bodyEl = document.querySelector('body');
 
 // to be able to access this info from multiple places
 const dynamicInfo = { editTodoIndex: null };
@@ -29,11 +31,11 @@ const dynamicInfo = { editTodoIndex: null };
 // to be able to remove event listeners
 const eventHandlers = (function () {
   const getDialogInputValues = () => {
-    const values = [...dialogInputs]
-      .map((dialogInput) => dialogInput.value)
-      .slice(0, 2);
+    const values = [];
+    values.push(dialogInputs[0].value);
+    values.push(descTextArea.value);
     values.push(selectEl.value);
-    values.push(dialogInputs[dialogInputs.length - 1].value);
+    values.push(dialogInputs[1].value);
     return values;
   };
 
@@ -42,7 +44,8 @@ const eventHandlers = (function () {
     addTodo(values);
     domManipulator.renderTodos();
     domManipulator.addEventHandlersToTodoBtns();
-    dialog.removeEventListener("close", eventHandlers.handleCloseForAdding);
+    dialog.removeEventListener('close', eventHandlers.handleCloseForAdding);
+    toggleSidebar(sidebar);
   };
 
   const handleCloseForEditing = () => {
@@ -51,7 +54,7 @@ const eventHandlers = (function () {
     editTodo(todoIndex, values);
     domManipulator.renderTodos();
     domManipulator.addEventHandlersToTodoBtns();
-    dialog.removeEventListener("close", eventHandlers.handleCloseForEditing);
+    dialog.removeEventListener('close', eventHandlers.handleCloseForEditing);
   };
 
   const handleProjectBtnClick = (e) => {
@@ -62,33 +65,32 @@ const eventHandlers = (function () {
     domManipulator.addEventHandlersToTodoBtns();
   };
 
-  const toggleSidebarDropdown = () => {
+  const toggleSidebar = () => {
     toggleSidebarBtnImgs.forEach(toggleSidebarBtnImg => {
       toggleSidebarBtnImg.classList.toggle('hide');
     });
-    toggleDropdown(sidebarDropdown);
+    toggleDropdown(sidebar);
   };
 
   const toggleEditDropdown = (e) => {
-    const thisDropdown = e.currentTarget.parentNode.nextSibling;
-    document.querySelectorAll(".edit-btn>.dropdown").forEach((dropdown) => {
-      if (!(dropdown === thisDropdown)) {
-        dropdown.setAttribute("class", "dropdown hide");
-      }
+    const thisDropdown = e.target.nextSibling;
+    document.querySelectorAll('.dropdown').forEach((dropdown) => {
+      if (dropdown === thisDropdown) return; 
+      dropdown.setAttribute('class', 'dropdown hide');
     });
     toggleDropdown(thisDropdown);
   };
 
   const getIndexOfThisTodo = (e) => {
     const index =
-      e.target.parentNode.parentNode.parentNode.getAttribute("data-index");
+      e.target.parentNode.parentNode.getAttribute('data-index');
     return Number(index);
   };
 
   const handleEditBtnClick = (e) => {
     dynamicInfo.editTodoIndex = getIndexOfThisTodo(e);
     domManipulator.showDialogForEditingTodo();
-    dialog.addEventListener("close", eventHandlers.handleCloseForEditing);
+    dialog.addEventListener('close', eventHandlers.handleCloseForEditing);
   };
 
   const handleDeleteBtnClick = (e) => {
@@ -103,7 +105,7 @@ const eventHandlers = (function () {
     handleCloseForAdding,
     handleCloseForEditing,
     handleProjectBtnClick,
-    toggleSidebarDropdown,
+    toggleSidebar,
     toggleEditDropdown,
     handleEditBtnClick,
     handleDeleteBtnClick,
@@ -124,30 +126,35 @@ const domManipulator = (function () {
       const todoIndex = currentProject.indexOf(todo);
       createVisualTodo(todo, todoIndex);
     });
+    if (!todosContainer.firstChild) {
+      const textNode = document.createTextNode('No todos yet. Add your first task to get started.');
+      todosContainer.appendChild(textNode);
+      todosContainer.classList.add('empty');
+    }
   };
 
   const addEventHandlersToTodoBtns = () => {
-    const toggleEditDropdownBtns = document.querySelectorAll(
-      ".toggle-dropdown>button",
+    const toggleDropdownBtns = document.querySelectorAll(
+      '.toggle-dropdown',
     );
     const editTodoBtns = document.querySelectorAll(
-      ".dropdown>button:nth-child(1)",
+      '.dropdown>button:nth-child(1)',
     );
     const deleteTodoBtns = document.querySelectorAll(
-      ".dropdown>button:nth-child(2)",
+      '.dropdown>button:nth-child(2)',
     );
-    toggleEditDropdownBtns.forEach((toggleEditDropdownBtn) => {
+    toggleDropdownBtns.forEach((toggleEditDropdownBtn) => {
       toggleEditDropdownBtn.addEventListener(
-        "click",
+        'click',
         eventHandlers.toggleEditDropdown,
       );
     });
     editTodoBtns.forEach((editTodoBtn) => {
-      editTodoBtn.addEventListener("click", eventHandlers.handleEditBtnClick);
+      editTodoBtn.addEventListener('click', eventHandlers.handleEditBtnClick);
     });
     deleteTodoBtns.forEach((deleteTodoBtn) => {
       deleteTodoBtn.addEventListener(
-        "click",
+        'click',
         eventHandlers.handleDeleteBtnClick,
       );
     });
@@ -155,9 +162,9 @@ const domManipulator = (function () {
 
   const showDialogForAddingTodo = () => {
     dialogInputs.forEach((dialogInput) => {
-      dialogInput.value = "";
+      dialogInput.value = '';
     });
-    dialog.querySelector("option").selected = true;
+    dialog.querySelector('option').selected = true;
     dialog.showModal();
   };
 
@@ -165,39 +172,34 @@ const domManipulator = (function () {
     const projects = getProjects();
     const currentProject = projects[projects.currentProject];
     const editTodo = currentProject[dynamicInfo.editTodoIndex];
-    let i = 0;
-    for (const prop in editTodo) {
-      if (prop === "priority") {
-        dialog.querySelectorAll("option").forEach((option) => {
-          if (option.value === editTodo[prop]) option.selected = true;
-        });
-        continue;
-      }
-      dialogInputs[i].value = editTodo[prop];
-      i++;
-    }
+    dialogInputs[0].value = editTodo['todo'];
+    descTextArea.value = editTodo['description'];
+    dialog.querySelectorAll('option').forEach(option => {
+      if (option.value === editTodo['priority']) option.selected = true;
+    });
+    dialogInputs[1].value = editTodo['dueDate'];
     dialog.showModal();
   };
 
   const createProjectBtn = () => {
-    const newProjectBtn = document.createElement("button");
+    const newProjectBtn = document.createElement('button');
     newProjectBtn.textContent = `# ${addProjectInput.value}`;
     newProjectBtn.addEventListener(
-      "click",
+      'click',
       eventHandlers.handleProjectBtnClick,
     );
-    addProjectInput.value = "";
+    addProjectInput.value = '';
     projectBtnsContainer.appendChild(newProjectBtn);
   };
 
   const restoreProjectsBtns = () => {
     const projects = getProjects();
-    const propsToSkip = ["Today", "currentProject", "dynamicInfo"];
+    const propsToSkip = ['Today', 'currentProject', 'dynamicInfo'];
     for (const prop in projects) {
       if (propsToSkip.includes(prop)) continue;
-      const projectBtn = document.createElement("button");
+      const projectBtn = document.createElement('button');
       projectBtn.textContent = `# ${prop}`;
-      projectBtn.addEventListener("click", eventHandlers.handleProjectBtnClick);
+      projectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
       projectBtnsContainer.appendChild(projectBtn);
     }
     changeColorsOfSelectedProjectBtn();
@@ -205,12 +207,12 @@ const domManipulator = (function () {
 
   const changeColorsOfSelectedProjectBtn = () => {
     const projects = getProjects();
-    const projectBtns = document.querySelectorAll(".projects>button");
+    const projectBtns = document.querySelectorAll('.projects>button');
     projectBtns.forEach((projectBtn) => {
       if (projectBtn.textContent.slice(2) === projects.currentProject) {
-        projectBtn.setAttribute("class", "selected-project-btn");
+        projectBtn.setAttribute('class', 'selected-project-btn');
       } else {
-        projectBtn.setAttribute("class", "");
+        projectBtn.setAttribute('class', '');
       }
     });
   };
@@ -226,12 +228,12 @@ const domManipulator = (function () {
   };
 })();
 
-addTodoBtn.addEventListener("click", () => {
+addTodoBtn.addEventListener('click', () => {
   domManipulator.showDialogForAddingTodo();
-  dialog.addEventListener("close", eventHandlers.handleCloseForAdding);
+  dialog.addEventListener('close', eventHandlers.handleCloseForAdding);
 });
 
-addProjectBtn.addEventListener("click", () => {
+addProjectBtn.addEventListener('click', () => {
   if (addProjectInput.value.length > 3) {
     const projectName = addProjectInput.value;
     addProject(projectName);
@@ -239,12 +241,13 @@ addProjectBtn.addEventListener("click", () => {
   }
 });
 
-todayProjectBtn.addEventListener("click", eventHandlers.handleProjectBtnClick);
+todayProjectBtn.addEventListener('click', eventHandlers.handleProjectBtnClick);
 
-window.addEventListener("load", () => {
+window.addEventListener('load', () => {
   domManipulator.restoreProjectsBtns();
   domManipulator.renderTodos();
   domManipulator.addEventHandlersToTodoBtns();
+  bodyEl.classList.remove('preload');
 });
 
-toggleSidebarBtn.addEventListener("click", eventHandlers.toggleSidebarDropdown);
+toggleSidebarBtn.addEventListener('click', eventHandlers.toggleSidebar);

@@ -1,5 +1,5 @@
-function toggleDropdown(targetDropdown) {
-  targetDropdown.classList.toggle("hide");
+function toggleDropdown(dropdown) {
+  dropdown.classList.toggle('hide');
 }
 
 export { toggleDropdown };
