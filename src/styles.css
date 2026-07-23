@@ -4,11 +4,6 @@
 }
 
 @font-face {
-  font-family: "ktf-roadbrush";
-  src: url("./fonts/KTF-Roadbrush.ttf");
-}
-
-@font-face {
   font-family: "norse-bold";
   src: url("./fonts/Norse-Bold.otf");
 }
@@ -60,11 +55,11 @@ header, .sidebar, .dropdown, footer {
 
 header, footer {
   display: flex;
-  padding: 8px 16px;
 }
 
 header {
   justify-content: space-between;
+  padding: 8px 16px;
 }
 
 .toggle-sidebar-btn {
@@ -304,18 +299,12 @@ input:focus, select:focus, textarea:focus {
 }
 
 footer {
+  padding: 6px;
   justify-content: center;
-  margin-top: auto;
-}
-
-footer > p {
-  font-family: "ktf-roadbrush";
-}
-
-footer a {
-  display: inline-flex;
-  gap: 5px;
-  font-family: inherit;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+  font-size: 0.8125rem;
 }
 
 a:hover {
@@ -325,7 +314,6 @@ a:hover {
 footer img {
   width: 16px;
   height: 16px;
-  align-self: center;
 }
 
 .hide {
